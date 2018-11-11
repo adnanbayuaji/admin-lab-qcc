@@ -1,24 +1,25 @@
-<?php 
+<?php
 	function sukses()
 	{
-		echo "<script> alert('Data berhasil diubah.');
-		window.location.href = '../production/viewpengguna.php';</script>";
+		echo "<script> alert('Data berhasil disimpan.');
+		window.location.href = '../production/viewmahasiswa.php';</script>";
 	}
 
 	function gagal()
 	{
-		echo "<script> alert('Gagal menyimpan.');
+		echo "<script> alert('Data gagal disimpan.');
 		window.history.go(-1);</script>";
 	}
 
-	if(isset($_GET['id']))
+	if(isset($_POST['submit']))
 	{
-		$idpengguna = @$_GET['id'];
+		$idmahasiswa = @$_POST['idmahasiswa'];
         $nama = @$_POST['nama'];
         $jeniskelamin = @$_POST['jeniskelamin'];
         $notelp = @$_POST['notelp'];
         $email = @$_POST['email'];
         $alamat = @$_POST['alamat'];
+        $tingkat = @$_POST['tingkat'];
 
         if($jeniskelamin == "")
         {
@@ -29,9 +30,8 @@
         {
         	include "koneksi.php";
 
-			$update = mysql_query("update Pengguna set nama='$nama', jenis_kelamin='$jeniskelamin', no_telepon='$notelp', email='$email', alamat='$alamat' where id_pengguna='$idpengguna'") or die(mysql_error());
-
-			if($update)
+			$insert = mysql_query("insert into Mahasiswa values ('$idmahasiswa', '$nama', '$jeniskelamin', '$notelp', '$email', '$alamat', '$tingkat')") or die(mysql_error());
+			if($insert)
 			{
 				sukses();
 			}
@@ -41,4 +41,4 @@
 			}	
         }
 	}
- ?>
+?>

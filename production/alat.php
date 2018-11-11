@@ -1,10 +1,3 @@
-<?php 
-  session_start();
-  if(!isset($_SESSION['status']))
-  {
-    header('location:login.php');
-  }
- ?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -16,6 +9,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 ?-->
 
 <?php
+  session_start();
+  if(!isset($_SESSION['status']))
+  {
+    header('location:login.php');
+  }
+  if($_SESSION['status']=="admin")
+  {
+    echo "<script>alert('Tambah Alat hanya bisa diakses oleh PIC.');
+    window.history.go(-1);</script>";
+  }
   include "../model/koneksi.php";
 ?>
 
@@ -23,8 +26,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="shortcut icon" href="../dist/img/1.jpg"/>
-  <title>Bluku-Book | Lihat Data Buku</title>
+  <link rel="shortcut icon" href="../dist/img/PolmanIcon.jpg"/>
+  <title>Admin Lab | Tambah Data Alat</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -38,8 +41,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="../dist/css/skins/skin-blue.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,6 +53,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="shortcut icon" href="2.png"/>
+  <script type="text/javascript">
+    function Validasi()
+    {
+      var idalat = document.getElementById('idalat').value;
+      var nama = document.getElementById('nama').value;
+      
+      if(idalat == "" || nama == "")
+      {
+        alert("Lengkapi data.");
+        return false;
+      }
+    }
+  </script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -82,9 +96,9 @@ desired effect
     <!-- Logo -->
     <a href="home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Bk</b>B</span>
+      <span class="logo-mini"><b>Ad</b>L</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Bluku</b>-Book</span>
+      <span class="logo-lg"><b>Admin</b>-Lab</span>
     </a>
 
     <!-- Header Navbar -->
@@ -97,101 +111,6 @@ desired effect
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the messages -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <!-- User Image -->
-                        <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <!-- Message title and timestamp -->
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                </ul>
-                <!-- /.menu -->
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- /.messages-menu -->
-
-          <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- Inner Menu: contains the notifications -->
-                <ul class="menu">
-                  <li><!-- start notification -->
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <!-- end notification -->
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -208,7 +127,7 @@ desired effect
 
                 <p>
                   <?php echo $_SESSION['nama']; ?>
-                  <small>Admin</small>
+                  <small><?php echo $_SESSION['status']; ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -281,52 +200,58 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <!--li><a href="buku.php"><i class="fa fa-link"></i> <span>Buku</span></a></li>
         <li><a href="rak.php"><i class="fa fa-link"></i> <span>Rak</span></a></li>
-        <li><a href="genre.php"><i class="fa fa-link"></i> <span>Genre</span></a></li>
-        <li><a href="pengguna.php"><i class="fa fa-link"></i> <span>Pengguna</span></a></li-->
+        <li><a href="alat.php"><i class="fa fa-link"></i> <span>Alat</span></a></li>
+        <li><a href="mahasiswa.php"><i class="fa fa-link"></i> <span>Mahasiswa</span></a></li-->
         <li class="treeview active">
-          <a href="#"><i class="fa fa-book"></i> <span>Buku</span>
+          <a href="#"><i class="fa fa-bookmark-o"></i> <span>Alat</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="buku.php">Tambah Data Buku</a></li>
-            <li><a href="viewbuku.php">Lihat Data Buku</a></li>
-            <li><a href="laporanbuku.php">Eksport Data Buku</a></li>
+          <?php if($_SESSION['status']=='pic')
+          {
+            ?>
+            <li><a href="alat.php">Tambah Data Alat</a></li>
+            <?php 
+            }
+            ?>
+            <li><a href="viewalat.php">Lihat Data Alat</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-database"></i> <span>Rak</span>
+          <a href="#"><i class="fa fa-bookmark-o"></i> <span>Pencatatan</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="rak.php">Tambah Data Rak</a></li>
-            <li><a href="viewrak.php">Lihat Data Rak</a></li>
+          <?php if($_SESSION['status']=='admin')
+          {
+            ?>
+            <li><a href="pencatatan.php">Tambah Data Pencatatan</a></li>
+            <?php 
+            }
+            ?>
+            <li><a href="viewpencatatan.php">Lihat Data Pencatatan</a></li>
           </ul>
         </li>
+ 
         <li class="treeview">
-          <a href="#"><i class="fa fa-bookmark-o"></i> <span>Genre</span>
+          <a href="#"><i class="fa fa-child"></i> <span>Mahasiswa</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="genre.php">Tambah Data Genre</a></li>
-            <li><a href="viewgenre.php">Lihat Data Genre</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-child"></i> <span>Pengguna</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pengguna.php">Tambah Data Pengguna</a></li>
-            <li><a href="viewpengguna.php">Lihat Data Pengguna</a></li>
-            <li><a href="laporanpengguna.php">Eksport Data Pengguna</a></li>
+          <?php if($_SESSION['status']=='pic')
+          {
+            ?>
+            <li><a href="mahasiswa.php">Tambah Data Mahasiswa</a></li>
+            <?php 
+            }
+            ?>
+            <li><a href="viewmahasiswa.php">Lihat Data Mahasiswa</a></li>
           </ul>
         </li>
       </ul>
@@ -340,11 +265,11 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Laporan Data Buku
+        Pengisian Data Alat
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="buku.php"><i class="fa fa-dashboard"></i>Buku</a></li>
+        <li><a href="alat.php"><i class="fa fa-dashboard"></i>Alat</a></li>
         <!--li class="active">Here</li-->
       </ol>
     </section>
@@ -355,29 +280,61 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-          <div class="box box-info">
-            <form class="form-horizontal" name="laporanbuku" action="../model/laporanbuku_db.php" method="post">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Pencarian Nama</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nama" placeholder="Nama">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Eksport ke : </label>
-                  <div class="col-sm-10">
-                    <!-- -->
-                    <input type="radio" name="jenis" value="PDF"> PDF <input type="radio" name="jenis" value="Excel"> Excel
-                  </div>
+        <?php 
+          $view = mysql_query("select * from Alat");
+          if(mysql_num_rows($view)==0)
+          {
+            $hasil = "GR-0001";
+          }
+          else
+          {
+            while($row = mysql_fetch_array($view))
+            {
+              list($huruf, $angka) = explode('-', $row['idalat']);
+              $angka = $angka + 1;
+              if($angka<10)
+              {
+                $hasil = $huruf.'-000'.$angka;
+              }
+              else if($angka<100)
+              {
+                $hasil = $huruf.'-00'.$angka;
+              }
+              else if($angka<1000)
+              {
+                $hasil = $huruf.'-0'.$angka;
+              }
+              else if($angka<10000)
+              {
+                $hasil = $huruf.'-'.$angka;
+              }
+            }  
+          }
+         ?>
+        <div class="box box-info">
+          <form onsubmit="return Validasi()" class="form-horizontal" name="formalat" action="../model/alatinsert_db.php" method="post">
+            <div class="box-body">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Id Alat</label>
+                <div class="col-sm-10">
+                  <input id="idalat" type="text" class="form-control" name="idalat" placeholder="Id Alat" value="<?php echo $hasil; ?>" readonly>
                 </div>
               </div>
-              <div class="box-footer">
-                <button type="submit" name="submit" class="btn btn-info pull-right">Buat Laporan</button>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nama</label>
+                <div class="col-sm-10">
+                  <input id="nama" type="text" class="form-control" name="nama" placeholder="Nama" onkeypress="return hanyaHuruf(event)" required>
+                </div>
               </div>
-              <!-- /.box-footer -->
-            </form>
-          </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="reset" class="btn btn-default">Cancel</button>
+              <button type="submit" name="submit" class="btn btn-info pull-right">Save</button>
+            </div>
+            <!-- /.box-footer -->
+          </form>
+        </div>
     </section>
     <!-- /.content -->
   </div>
@@ -390,7 +347,7 @@ desired effect
       <b>Version</b> 1.0.0
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">MI16Corp</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2016 <a href="#">QCCOptimisPrime</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -480,26 +437,17 @@ desired effect
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<!-- DataTables -->
-<script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+  function hanyaHuruf(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+     if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90) || charCode == 8 || charCode == 32)
+      return true;
+    return false;
+  }
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-<!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 </body>
 </html>

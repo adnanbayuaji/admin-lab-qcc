@@ -18,8 +18,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="shortcut icon" href="../dist/img/1.jpg"/>
-  <title>Bluku-Book | Starter</title>
+  <link rel="shortcut icon" href="../dist/img/PolmanIcon.jpg"/>
+  <title>Admin Lab | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -75,9 +75,9 @@ desired effect
     <!-- Logo -->
     <a href="starter.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>Bk</b>B</span>
+      <span class="logo-mini"><b>Ad</b>L</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Bluku</b>-Book</span>
+      <span class="logo-lg"><b>Admin</b>Lab</span>
     </a>
 
     <!-- Header Navbar -->
@@ -90,101 +90,7 @@ desired effect
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the messages -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <!-- User Image -->
-                        <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <!-- Message title and timestamp -->
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                </ul>
-                <!-- /.menu -->
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- /.messages-menu -->
-
-          <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- Inner Menu: contains the notifications -->
-                <ul class="menu">
-                  <li><!-- start notification -->
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <!-- end notification -->
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
+          
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -201,7 +107,7 @@ desired effect
 
                 <p>
                   <?php echo $_SESSION['nama']; ?>
-                  <small>Admin</small>
+                  <small><?php echo $_SESSION['status']; ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -274,52 +180,58 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <!--li><a href="buku.php"><i class="fa fa-link"></i> <span>Buku</span></a></li>
         <li><a href="rak.php"><i class="fa fa-link"></i> <span>Rak</span></a></li>
-        <li><a href="genre.php"><i class="fa fa-link"></i> <span>Genre</span></a></li>
-        <li><a href="pengguna.php"><i class="fa fa-link"></i> <span>Pengguna</span></a></li-->
+        <li><a href="alat.php"><i class="fa fa-link"></i> <span>Alat</span></a></li>
+        <li><a href="mahasiswa.php"><i class="fa fa-link"></i> <span>Mahasiswa</span></a></li-->
         <li class="treeview">
-          <a href="#"><i class="fa fa-book"></i> <span>Buku</span>
+          <a href="#"><i class="fa fa-bookmark-o"></i> <span>Alat</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="buku.php">Tambah Data Buku</a></li>
-            <li><a href="viewbuku.php">Lihat Data Buku</a></li>
-            <li><a href="laporanbuku.php">Eksport Data Buku</a></li>
+          <?php if($_SESSION['status']=='pic')
+          {
+            ?>
+            <li><a href="alat.php">Tambah Data Alat</a></li>
+            <?php 
+            }
+            ?>
+            <li><a href="viewalat.php">Lihat Data Alat</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-database"></i> <span>Rak</span>
+          <a href="#"><i class="fa fa-bookmark-o"></i> <span>Pencatatan</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="rak.php">Tambah Data Rak</a></li>
-            <li><a href="viewrak.php">Lihat Data Rak</a></li>
+          <?php if($_SESSION['status']=='admin')
+          {
+            ?>
+            <li><a href="pencatatan.php">Tambah Data Pencatatan</a></li>
+            <?php 
+            }
+            ?>
+            <li><a href="viewpencatatan.php">Lihat Data Pencatatan</a></li>
           </ul>
         </li>
+ 
         <li class="treeview">
-          <a href="#"><i class="fa fa-bookmark-o"></i> <span>Genre</span>
+          <a href="#"><i class="fa fa-child"></i> <span>Mahasiswa</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="genre.php">Tambah Data Genre</a></li>
-            <li><a href="viewgenre.php">Lihat Data Genre</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-child"></i> <span>Pengguna</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pengguna.php">Tambah Data Pengguna</a></li>
-            <li><a href="viewpengguna.php">Lihat Data Pengguna</a></li>
-            <li><a href="laporanpengguna.php">Eksport Data Pengguna</a></li>
+          <?php if($_SESSION['status']=='pic')
+          {
+            ?>
+            <li><a href="mahasiswa.php">Tambah Data Mahasiswa</a></li>
+            <?php 
+            }
+            ?>
+            <li><a href="viewmahasiswa.php">Lihat Data Mahasiswa</a></li>
           </ul>
         </li>
       </ul>
@@ -333,7 +245,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Selamat Datang di Pengolahan Data Perpustakaan
+        Selamat Datang di Pengolahan Data Fasilitas Admin Lab
         <small></small>
       </h1>
       <ol class="breadcrumb">
@@ -352,7 +264,7 @@ desired effect
         <div class="col-md-3">
           <div class="box box-default collapsed-box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-book"></i> Buku</h3>
+              <h3 class="box-title"><i class="fa fa-bookmark-o"></i> Alat</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -362,9 +274,14 @@ desired effect
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <a href="buku.php">Tambah Data Buku</a><br>
-              <a href="viewbuku.php">Lihat Data Buku</a><br>
-              <a href="laporanbuku.php">Eksport Data Buku</a>
+            <?php if($_SESSION['status']=='pic')
+              {
+                ?>
+              <a href="alat.php">Tambah Data Alat</a><br>
+              <?php 
+                }
+                ?>
+              <a href="viewalat.php">Lihat Data Alat</a>
             </div>
             <!-- /.box-body -->
           </div>
@@ -373,7 +290,7 @@ desired effect
         <div class="col-md-3">
           <div class="box box-default collapsed-box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-database"></i> Rak</h3>
+              <h3 class="box-title"><i class="fa fa-bookmark-o"></i> Pencatatan</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -383,54 +300,44 @@ desired effect
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <a href="rak.php">Tambah Data Rak</a><br>
-              <a href="viewrak.php">Lihat Data Rak</a>
+            <?php if($_SESSION['status']=='admin')
+              {
+                ?>
+              <a href="pencatatan.php">Tambah Data Pencatatan</a><br>
+              <?php 
+                }
+                ?>
+              <a href="viewpencatatan.php">Eksport Data Pencatatan</a><br>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
-        <div class="col-md-3">
-          <div class="box box-default collapsed-box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-bookmark-o"></i> Genre</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                </button>
+          <div class="col-md-3">
+            <div class="box box-default collapsed-box box-solid">
+              <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-child"></i> Mahasiswa</h3>
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                  </button>
+                </div>
+                <!-- /.box-tools -->
               </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <a href="genre.php">Tambah Data Genre</a><br>
-              <a href="viewgenre.php">Lihat Data Genre</a>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <div class="col-md-3">
-          <div class="box box-default collapsed-box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-child"></i> Pengguna</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                </button>
+              <!-- /.box-header -->
+              <div class="box-body">
+              <?php if($_SESSION['status']=='admin')
+                {
+                  ?>
+                <a href="mahasiswa.php">Tambah Data Mahasiswa</a><br>
+                <?php 
+                  }
+                  ?>
+                <a href="viewmahasiswa.php">Lihat Data Mahasiswa</a><br>
               </div>
-              <!-- /.box-tools -->
+              <!-- /.box-body -->
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <a href="pengguna.php">Tambah Data Pengguna</a><br>
-              <a href="viewpengguna.php">Lihat Data Pengguna</a><br>
-              <a href="laporanpengguna.php">Eksport Data Pengguna</a>
-            </div>
-            <!-- /.box-body -->
+            <!-- /.box -->
           </div>
-          <!-- /.box -->
-        </div>
         </div>
     </section>
     <!-- /.content -->
@@ -444,7 +351,7 @@ desired effect
       <b>Version</b> 1.0.0
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">MI16Corp</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2016 <a href="#">QCCOptimisPrime</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

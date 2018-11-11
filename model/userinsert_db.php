@@ -16,47 +16,56 @@
         $nama = @$_POST['nama'];
         $username = @$_POST['username'];
         $password = md5(@$_POST['password']);
+        $role = @$_POST['role'];
 
-		include "koneksi.php";
+        if($nama==""||$username =="" || $password=="" ||$role=="-- Choose Role --")
+        {
+        	echo "<script> alert('Lengkapi Data.');
+        	window.history.go(-1);</script>";
+        }
+        else
+        {
+        	include "koneksi.php";
 
-		$view = mysql_query("select * from User");
-		if(mysql_num_rows($view)==0)
-		{
-			$hasil = "US-0001";
-		}
-		else
-		{
-			while($row = mysql_fetch_array($view))
+			$view = mysql_query("select * from User");
+			if(mysql_num_rows($view)==0)
 			{
-				list($huruf, $angka) = explode('-', $row['id_user']);
-				$angka = $angka + 1;
-				if($angka<10)
+				$hasil = "US-0001";
+			}
+			else
+			{
+				while($row = mysql_fetch_array($view))
 				{
-					$hasil = $huruf.'-000'.$angka;
-				}
-				else if($angka<100)
-				{
-					$hasil = $huruf.'-00'.$angka;
-				}
-				else if($angka<1000)
-				{
-					$hasil = $huruf.'-0'.$angka;
-				}
-				else if($angka<10000)
-				{
-					$hasil = $huruf.'-'.$angka;
-				}
-			}  
-		}
+					list($huruf, $angka) = explode('-', $row['id_user']);
+					$angka = $angka + 1;
+					if($angka<10)
+					{
+						$hasil = $huruf.'-000'.$angka;
+					}
+					else if($angka<100)
+					{
+						$hasil = $huruf.'-00'.$angka;
+					}
+					else if($angka<1000)
+					{
+						$hasil = $huruf.'-0'.$angka;
+					}
+					else if($angka<10000)
+					{
+						$hasil = $huruf.'-'.$angka;
+					}
+				}  
+			}
 
-		$insert = mysql_query("insert into User values ('$hasil', '$nama', '$username', '$password', 'admin')") or die(mysql_error());
-		if($insert)
-		{
-			sukses();
-		}
-		else
-		{
-			gagal();
-		}
+			$insert = mysql_query("insert into User values ('$hasil', '$nama', '$username', '$password', '$role')") or die(mysql_error());
+			if($insert)
+			{
+				sukses();
+			}
+			else
+			{
+				gagal();
+			}
+        }
 	}
 ?>

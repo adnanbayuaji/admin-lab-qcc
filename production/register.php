@@ -10,8 +10,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="shortcut icon" href="../dist/img/1.jpg"/>
-  <title>Bluku-Book | Registration Page</title>
+  <link rel="shortcut icon" href="../dist/img/PolmanIcon.jpg"/>
+  <title>Admin Lab | Registration Page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -39,7 +39,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="register.php"><b>Bluku</b>-Book</a>
+    <a href="register.php"><b>Admin</b>-Lab</a>
   </div>
 
   <div class="register-box-body">
@@ -61,6 +61,13 @@
       <div class="form-group has-feedback">
         <input type="password" name="repassword" class="form-control" placeholder="Retype password">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <select id="role" name="role" class="form-control">
+          <option>-- Choose Role --</option>
+          <option value="admin">Admin</option>
+          <option value="pic">PIC Lab</option>
+        </select>
       </div>
       <div class="row">
         <div class="col-xs-8">

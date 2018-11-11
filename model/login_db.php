@@ -15,10 +15,8 @@
 				{
 					$_SESSION['nama'] = $row['nama'];
 					$_SESSION['status'] = $row['status'];
-					if($row['status']='admin')
-					{
-						header('location:../production/home.php');
-					}
+					setcookie("name", $row['nama'], time()+3600, "/","", 0);
+					header('location:../production/home.php');
 				}
 	        }
 		}

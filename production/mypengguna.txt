@@ -1,6 +1,0 @@
-PG0001|Pras|Laki-Laki|089691825262|pras@gmail.com|Tegal
-              PG0002|Adnan|Laki-Laki|089691825262|adnan.bayuaji@gmail.com|Sukodono
-              PG0003|Diana|Perempuan|087627361524|diana@gmail.com|Pademonegoro
-              PG0004|Adnan|Laki-Laki|087627361524|adnan.bayuaji@gmail.com|as
-              PG0004|Adnan|Laki-Laki|087627361524|adnan.bayuaji@gmail.com|as
-              

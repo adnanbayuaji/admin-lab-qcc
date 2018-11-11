@@ -2,7 +2,7 @@
 	function sukses()
 	{
 		echo "<script> alert('Data berhasil disimpan.');
-		window.location.href = '../production/viewgenre.php';</script>";
+		window.location.href = '../production/viewalat.php';</script>";
 	}
 
 	function gagal()
@@ -13,12 +13,12 @@
 
 	if(isset($_POST['submit']))
 	{
-		$idgenre = @$_POST['idgenre'];
+		$idalat = @$_POST['idalat'];
         $nama = @$_POST['nama'];
 
     	include "koneksi.php";
 
-		$insert = mysql_query("insert into Genre values ('$idgenre', '$nama')") or die(mysql_error());
+		$insert = mysql_query("insert into Alat values ('$idalat', '$nama')") or die(mysql_error());
 		if($insert)
 		{
 			sukses();

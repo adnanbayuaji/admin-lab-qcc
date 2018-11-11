@@ -1,4 +1,0 @@
-GR0001|Fiksi Novel
-              GR0002|Non Fiksi
-              GR0003|Buku Saya
-              
